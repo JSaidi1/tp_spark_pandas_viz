@@ -152,15 +152,22 @@ gp_st_pl.select("station_id", "pollutant", "avg_timestamp").show(truncate=False)
 print("─" * 70)
 print("Sauvegarder en Parquet partitionné par `date`:")
 print("─" * 70)
-# extraire la date yyyy-MM-dd
-df_air = df_air.withColumn("date", F.to_date("timestamp"))
-# df_air.show()
 
-output_path = "./output/air_quality_clean"
+# try:
+#     # extraire la date yyyy-MM-dd
+#     df_air = df_air.withColumn("date", F.to_date("timestamp"))
+#     # df_air.show()
 
-df_air.write.mode("overwrite").partitionBy("date").parquet(output_path)
-# mode("overwrite"): écrase si le dossier existe
-# partitionBy("date"): partition par date
+#     output_path = "./output/air_quality_clean"
+
+#     df_air.write.mode("overwrite").partitionBy("date").parquet(output_path)
+#     # mode("overwrite"): écrase si le dossier existe
+#     # partitionBy("date"): partition par date
+# except Exception as e:
+#     print("[KO]: erreur lors de la sauvegarde en parquet partitionné par `date`:", e)
+
+
+
 
 
 
